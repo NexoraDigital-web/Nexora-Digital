@@ -1,0 +1,3302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work — Nexora Digital Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --black: #0a0a0a;
+        --white: #f5f2ed;
+        --accent: #c8ff00;
+        --accent-dim: #9fcc00;
+        --border: rgba(245, 242, 237, 0.12);
+        --card-bg: #111111;
+        --font-display: "Syne", sans-serif;
+        --font-body: "DM Sans", sans-serif;
+      }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-body);
+        background: var(--black);
+        color: var(--white);
+        overflow-x: hidden;
+        cursor: none;
+      }
+      .cursor {
+        position: fixed;
+        width: 12px;
+        height: 12px;
+        background: var(--accent);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.2s,
+          height 0.2s;
+        mix-blend-mode: difference;
+      }
+      .cursor-ring {
+        position: fixed;
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(200, 255, 0, 0.4);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: transform 0.12s ease-out;
+      }
+      body:has(a:hover) .cursor,
+      body:has(button:hover) .cursor {
+        width: 20px;
+        height: 20px;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 24px 60px;
+
+        /* Changed to Grid for perfect screen centering */
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+
+        border-bottom: 1px solid transparent;
+        transition:
+          border-color 0.3s,
+          background 0.3s,
+          padding 0.3s;
+      }
+
+      nav.scrolled {
+        background: rgba(10, 10, 10, 0.92);
+        backdrop-filter: blur(16px);
+        border-color: var(--border);
+        padding: 16px 60px;
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* Adjust spacing between image and text */
+        justify-self: start;
+      }
+
+      /* 1. New container for logo + image */
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* Space between image and text */
+        justify-self: start;
+      }
+
+      /* 2. Remove justify-self from the logo link (since the parent handles it now) */
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--white);
+        text-decoration: none;
+        /* Remove justify-self: start; from here */
+      }
+
+      /* 3. Ensure the image container doesn't add extra margin */
+      .nav-logo1 {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--white);
+        text-decoration: none;
+        justify-self: start;
+      }
+      .nav-logo span {
+        color: var(--accent);
+      }
+
+      /* Nav Links - Centered */
+      .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+        justify-self: center;
+      }
+      .nav-links a {
+        font-size: 14px;
+        font-weight: 400;
+        color: rgba(245, 242, 237, 0.6);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--white);
+      }
+
+      /* Nav Right Container - Grouped together */
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        justify-self: end;
+      }
+
+      .nav-cta {
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 10px 22px;
+        background: var(--accent);
+        color: var(--black);
+        border: none;
+        border-radius: 100px;
+        cursor: none;
+        letter-spacing: 0.02em;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        text-decoration: none;
+      }
+      .nav-cta:hover {
+        background: var(--accent-dim);
+        transform: scale(1.03);
+      }
+
+      .page-hero {
+        padding: 160px 60px 80px;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+      .page-hero-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 60% 70% at 80% 50%,
+          rgba(200, 255, 0, 0.06) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .page-tag {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+        opacity: 0;
+        animation: fadeUp 0.7s 0.1s forwards;
+      }
+      .page-tag::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--accent);
+      }
+      .page-hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(48px, 7vw, 96px);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 0.9;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.25s forwards;
+      }
+      .page-hero h1 em {
+        font-style: italic;
+        font-weight: 400;
+        color: rgba(245, 242, 237, 0.3);
+      }
+      .page-hero-sub {
+        font-size: 17px;
+        font-weight: 300;
+        color: rgba(245, 242, 237, 0.5);
+        max-width: 480px;
+        line-height: 1.7;
+        margin-top: 32px;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.4s forwards;
+      }
+      section {
+        padding: 80px 60px;
+      }
+      .section-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 40px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        max-width: 48px;
+        height: 1px;
+        background: var(--accent);
+        opacity: 0.5;
+      }
+      /* Filter */
+      .filter-bar {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 56px;
+      }
+      .filter-btn {
+        font-size: 13px;
+        font-weight: 400;
+        padding: 8px 20px;
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        background: transparent;
+        color: rgba(245, 242, 237, 0.5);
+        cursor: none;
+        transition: all 0.2s;
+        letter-spacing: 0.02em;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(200, 255, 0, 0.05);
+      }
+      /* Projects grid */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+      }
+      .project-card {
+        position: relative;
+        overflow: hidden;
+        background: var(--card-bg);
+        cursor: none;
+        display: none;
+      }
+      .project-card.show {
+        display: block;
+      }
+      .project-card-inner {
+        aspect-ratio: 16/10;
+        position: relative;
+        overflow: hidden;
+      }
+      .project-card-bg {
+        position: absolute;
+        inset: 0;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Add these lines to fix the scaling */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .project-card:hover .project-card-bg {
+        transform: scale(1.05);
+      }
+      .project-card-bg.c1 {
+        background-image: linear-gradient(135deg, #1a1a2e, #0f3460);
+      }
+      .project-card-bg.c2 {
+        background-image: linear-gradient(135deg, #1a0a00, #5c2e00);
+      }
+      .project-card-bg.c3 {
+        background-image: linear-gradient(135deg, #0a1a0a, #0f3a0f);
+      }
+      .project-card-bg.c4 {
+        background-image: linear-gradient(135deg, #1a0a1a, #3a0a3a);
+      }
+      .project-card-bg.c5 {
+        background-image: linear-gradient(135deg, #0a0a1a, #1a1a4a);
+      }
+      .project-card-bg.c6 {
+        background-image: linear-gradient(135deg, #1a1a0a, #3a3a00);
+      }
+      /* Mockup UI inside card */
+      .card-mock {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 28px;
+        gap: 10px;
+        opacity: 0.3;
+      }
+      .card-mock-bar {
+        height: 2px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 2px;
+      }
+      .card-mock-row {
+        display: flex;
+        gap: 8px;
+      }
+      .card-mock-block {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+        flex: 1;
+      }
+      .project-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(10, 10, 10, 0.95) 0%,
+          rgba(10, 10, 10, 0.4) 50%,
+          transparent 100%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 36px;
+        transform: translateY(8px);
+        transition: transform 0.3s;
+      }
+      .project-card:hover .project-overlay {
+        transform: none;
+      }
+      .project-tags {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+      }
+      .project-tag {
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border: 1px solid rgba(200, 255, 0, 0.3);
+        color: var(--accent);
+        border-radius: 100px;
+      }
+      .project-title {
+        font-family: var(--font-display);
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .project-result {
+        font-size: 13px;
+        font-weight: 300;
+        color: rgba(245, 242, 237, 0.55);
+        margin-bottom: 16px;
+      }
+      .project-result strong {
+        color: var(--accent);
+        font-weight: 500;
+      }
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(245, 242, 237, 0.4);
+        text-decoration: none;
+        transition:
+          color 0.2s,
+          gap 0.2s;
+      }
+      .project-card:hover .project-link {
+        color: var(--accent);
+        gap: 10px;
+      }
+
+      .case-visual-bg {
+        position: absolute;
+        inset: 0;
+        /* The magic properties to stop deformation */
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Ensure the parent container also handles its background correctly if used */
+      .case-study-visual {
+        background: var(--card-bg);
+        position: relative;
+        overflow: hidden;
+        min-height: 360px;
+        background-size: cover;
+        background-position: center;
+      }
+      /* Case study section */
+      .case-study {
+        border: 1px solid var(--border);
+        margin-bottom: 2px;
+        overflow: hidden;
+      }
+      .case-study-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .case-study-info {
+        padding: 56px 52px;
+        background: var(--card-bg);
+      }
+      .case-study-visual {
+        background: var(--card-bg);
+        position: relative;
+        overflow: hidden;
+        min-height: 360px;
+      }
+      .case-visual-bg {
+        position: absolute;
+        inset: 0;
+      }
+      .case-visual-bg.v1 {
+        background: black;
+      }
+
+      .case-visual-bg.v2 {
+        background: linear-gradient(135deg, #1a0a00, #5c2e00);
+      }
+      .case-visual-bg.v3 {
+        background: linear-gradient(135deg, #0a1a0a, #0f3a0f);
+      }
+
+      /* Apply this to fix the case study images specifically */
+      .case-visual-bg {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* If you are using the background-image directly on the visual container */
+      .case-study-visual {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .case-visual-mock {
+        position: absolute;
+        inset: 32px;
+        opacity: 0.25;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .case-visual-mock-block {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 6px;
+      }
+      .case-num {
+        font-family: var(--font-display);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: rgba(245, 242, 237, 0.2);
+        margin-bottom: 16px;
+      }
+      .case-client {
+        font-family: var(--font-display);
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 8px;
+      }
+      .case-industry {
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(245, 242, 237, 0.3);
+        margin-bottom: 24px;
+      }
+      .case-divider {
+        width: 32px;
+        height: 1px;
+        background: var(--accent);
+        margin-bottom: 24px;
+        opacity: 0.6;
+      }
+      .case-challenge-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(245, 242, 237, 0.25);
+        margin-bottom: 10px;
+      }
+      .case-challenge {
+        font-size: 15px;
+        font-weight: 300;
+        color: rgba(245, 242, 237, 0.6);
+        line-height: 1.75;
+        margin-bottom: 28px;
+      }
+      .case-approach-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(245, 242, 237, 0.25);
+        margin-bottom: 10px;
+      }
+      .case-approach {
+        font-size: 15px;
+        font-weight: 300;
+        color: rgba(245, 242, 237, 0.6);
+        line-height: 1.75;
+        margin-bottom: 32px;
+      }
+      .case-metrics {
+        display: flex;
+        gap: 32px;
+      }
+      .case-metric-num {
+        font-family: var(--font-display);
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--accent);
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+      .case-metric-label {
+        font-size: 12px;
+        font-weight: 300;
+        color: rgba(245, 242, 237, 0.35);
+        margin-top: 4px;
+      }
+      /* CTA */
+      .cta-strip {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        padding: 64px 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+      }
+      .cta-strip-title {
+        font-family: var(--font-display);
+        font-size: clamp(28px, 3.5vw, 48px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 0.95;
+      }
+      .cta-strip-title em {
+        font-style: italic;
+        font-weight: 400;
+        color: rgba(245, 242, 237, 0.3);
+      }
+      .btn-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 18px 36px;
+        background: var(--accent);
+        color: var(--black);
+        border: none;
+        border-radius: 100px;
+        cursor: none;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-cta:hover {
+        background: var(--accent-dim);
+        transform: scale(1.03);
+      }
+      .btn-secondary {
+        font-size: 14px;
+        color: rgba(245, 242, 237, 0.6);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(245, 242, 237, 0.2);
+        padding-bottom: 2px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+        cursor: none;
+      }
+      .btn-secondary:hover {
+        color: var(--white);
+        border-color: var(--white);
+      }
+      footer {
+        padding: 60px 60px 40px;
+        border-top: 1px solid var(--border);
+      }
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 60px;
+      }
+      .footer-logo {
+        font-family: var(--font-display);
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .footer-logo span {
+        color: var(--accent);
+      }
+      .footer-tagline {
+        font-size: 14px;
+        font-weight: 300;
+        color: rgba(245, 242, 237, 0.35);
+        margin-top: 8px;
+      }
+      .footer-nav {
+        display: flex;
+        gap: 60px;
+      }
+      .footer-col-title {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(245, 242, 237, 0.35);
+        margin-bottom: 20px;
+      }
+      .footer-col a {
+        display: block;
+        font-size: 14px;
+        font-weight: 300;
+        color: rgba(245, 242, 237, 0.55);
+        text-decoration: none;
+        margin-bottom: 12px;
+        transition: color 0.2s;
+        cursor: none;
+      }
+      .footer-col a:hover {
+        color: var(--white);
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+      }
+      .footer-copy {
+        font-size: 13px;
+        color: rgba(245, 242, 237, 0.25);
+      }
+      .footer-socials {
+        display: flex;
+        gap: 20px;
+      }
+      .footer-socials a {
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(245, 242, 237, 0.3);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+        cursor: none;
+      }
+      .footer-socials a:hover {
+        color: var(--accent);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* Hamburger button */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        z-index: 200;
+        flex-shrink: 0;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--white);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* Mobile menu panel */
+      .mobile-menu {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 75%;
+        height: 100%;
+        background: rgba(10, 10, 10, 0.99);
+        z-index: 150;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 4px;
+        padding: 0 40px;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -8px 0 40px rgba(0, 0, 0, 0.5);
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+      .mobile-menu a {
+        font-family: var(--font-display);
+        font-size: 28px;
+        font-weight: 700;
+        color: rgba(245, 242, 237, 0.7);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+        transition: color 0.2s;
+        padding: 10px 0;
+        width: 100%;
+      }
+      .mobile-menu a:hover,
+      .mobile-menu a.active {
+        color: var(--accent);
+      }
+      .mobile-menu-cta {
+        margin-top: 24px;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        padding: 14px 32px !important;
+        background: var(--accent) !important;
+        color: var(--black) !important;
+        border: none;
+        border-radius: 100px;
+        font-family: var(--font-body);
+        font-size: 15px !important;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s;
+        width: auto !important;
+      }
+      .mobile-menu-cta:hover {
+        background: var(--accent-dim) !important;
+        color: var(--black) !important;
+      }
+      .mobile-menu-close {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: 1px solid rgba(245, 242, 237, 0.2);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+      }
+      .mobile-menu-close span {
+        position: absolute;
+        width: 16px;
+        height: 2px;
+        background: var(--white);
+        border-radius: 2px;
+      }
+      .mobile-menu-close span:nth-child(1) {
+        transform: rotate(45deg);
+      }
+      .mobile-menu-close span:nth-child(2) {
+        transform: rotate(-45deg);
+      }
+
+      /* ============================================
+         MOBILE & TABLET RESPONSIVE STYLES
+         Breakpoints: tablet ≤ 900px, mobile ≤ 600px
+         ============================================ */
+
+      @media (max-width: 900px) {
+        nav {
+          padding: 20px 32px !important;
+        }
+        nav.scrolled {
+          padding: 14px 32px !important;
+        }
+
+        /* Page hero */
+        .page-hero {
+          padding: 120px 28px 60px;
+        }
+
+        /* Sections */
+        section {
+          padding: 60px 28px;
+        }
+
+        /* Story grid (about) */
+        .story-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .story-img-box {
+          aspect-ratio: 16/9;
+        }
+
+        /* Team grid (about) */
+        .team-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        /* Values grid (about) */
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+        .value-item {
+          padding: 36px 28px;
+        }
+
+        /* CTA strip */
+        .cta-strip {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 48px 36px;
+          gap: 28px;
+        }
+        .cta-strip > div {
+          flex-shrink: unset;
+        }
+
+        /* Footer */
+        footer {
+          padding: 48px 28px 32px;
+        }
+        .footer-top {
+          flex-direction: column;
+          gap: 40px;
+          margin-bottom: 40px;
+        }
+        .footer-nav {
+          gap: 36px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 16px;
+          align-items: flex-start;
+        }
+
+        /* Blog hero */
+        .page-hero-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 32px;
+        }
+        .newsletter-inline {
+          max-width: 100%;
+          width: 100%;
+        }
+
+        /* Blog featured post */
+        .featured-post {
+          grid-template-columns: 1fr;
+        }
+        .featured-post-visual {
+          min-height: 240px;
+        }
+        .featured-post-info {
+          padding: 36px 28px;
+        }
+
+        /* Blog posts grid */
+        .posts-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        /* Newsletter section */
+        .newsletter-section {
+          flex-direction: column;
+          padding: 48px 28px;
+          gap: 32px;
+        }
+        .newsletter-big-form {
+          min-width: 0;
+          width: 100%;
+        }
+
+        /* Contact layout */
+        .contact-layout {
+          grid-template-columns: 1fr;
+          padding-top: 80px;
+        }
+        .contact-left {
+          padding: 60px 28px;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .contact-right {
+          padding: 60px 28px;
+        }
+
+        /* Portfolio grid */
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* Case studies */
+        .case-study-header {
+          grid-template-columns: 1fr;
+        }
+        .case-study-info {
+          padding: 40px 28px;
+        }
+        .case-study-visual {
+          min-height: 240px;
+        }
+
+        /* Services list */
+        .svc-item {
+          grid-template-columns: 40px 1fr;
+          gap: 20px 24px;
+        }
+        .svc-includes {
+          grid-column: 2;
+        }
+        .svc-arrow {
+          display: none;
+        }
+
+        /* Process grid */
+        .process-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        /* Pricing grid */
+        .pricing-grid {
+          grid-template-columns: 1fr;
+          max-width: 480px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        nav {
+          padding: 16px 20px !important;
+        }
+        nav.scrolled {
+          padding: 12px 20px !important;
+        }
+        .nav-logo {
+          font-size: 23px;
+        }
+        .nav-links {
+          display: none !important;
+        }
+        .nav-cta {
+          display: none !important;
+        }
+        .hamburger {
+          display: flex !important;
+          margin-left: 50px;
+        }
+
+        /* Page hero */
+        .page-hero {
+          padding: 100px 20px 48px;
+        }
+
+        /* Sections */
+        section {
+          padding: 48px 20px;
+        }
+
+        /* Team grid single col */
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* Blog posts single col */
+        .posts-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* Form row single col */
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        /* Type grid */
+        .type-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        /* Process grid single col */
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* Case metrics wrap */
+        .case-metrics {
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+
+        /* Footer socials wrap */
+        .footer-socials {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        /* CTA strip */
+        .cta-strip {
+          padding: 36px 20px;
+        }
+
+        /* Newsletter big form stacked */
+        .newsletter-big-form {
+          flex-direction: column;
+        }
+
+        /* Footer */
+        .footer-top {
+          flex-direction: column !important;
+          gap: 32px !important;
+        }
+        .footer-nav {
+          flex-direction: column !important;
+          gap: 24px !important;
+        }
+        .footer-bottom {
+          align-items: center;
+          flex-direction: column !important;
+          gap: 14px !important;
+          text-align: center !important;
+        }
+        .footer-socials {
+          justify-content: center !important;
+        }
+      }
+      /* ── Language Dropdown ─────────────────────── */
+      .lang-drop {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .lang-drop-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+        color: rgba(245, 242, 237, 0.6);
+      }
+      .lang-drop-btn:hover {
+        color: var(--accent, #c8ff00);
+      }
+      .lang-drop-btn img {
+        border-radius: 2px;
+        display: block;
+        width: 20px;
+        height: 14px;
+        object-fit: cover;
+      }
+      .lang-drop-btn svg {
+        transition: transform 0.2s;
+      }
+      .lang-drop.open .lang-drop-btn svg {
+        transform: rotate(180deg);
+      }
+      .lang-drop-btn .lang-code {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+      }
+      .lang-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        background: #1a1a1a;
+        border: 1px solid rgba(245, 242, 237, 0.12);
+        border-radius: 8px;
+        overflow: hidden;
+        min-width: 100px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-4px);
+        transition:
+          opacity 0.15s,
+          transform 0.15s;
+        z-index: 200;
+      }
+      .lang-drop.open .lang-menu {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+      }
+      .lang-opt {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 14px;
+        cursor: pointer;
+        width: 100%;
+        background: transparent;
+        border: none;
+        text-align: left;
+        font-family: var(--font-body, sans-serif);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: rgba(245, 242, 237, 0.6);
+        transition:
+          background 0.15s,
+          color 0.15s;
+        white-space: nowrap;
+      }
+      .lang-opt:hover,
+      .lang-opt.active {
+        background: rgba(200, 255, 0, 0.08);
+        color: var(--accent, #c8ff00);
+      }
+      .lang-opt img {
+        border-radius: 2px;
+        width: 18px;
+        height: 12px;
+        object-fit: cover;
+        display: block;
+      }
+      @media (max-width: 768px) {
+        .lang-drop {
+          display: none;
+        }
+      }
+      /* Mobile version inside menu */
+      .mobile-lang {
+        display: flex;
+        gap: 8px;
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(245, 242, 237, 0.1);
+        width: 100%;
+      }
+      .lang-opt-m {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        background: rgba(245, 242, 237, 0.04);
+        border: 1px solid rgba(245, 242, 237, 0.1);
+        border-radius: 8px;
+        padding: 10px 6px;
+        cursor: pointer;
+        font-family: var(--font-body, sans-serif);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: rgba(245, 242, 237, 0.5);
+        transition:
+          border-color 0.2s,
+          color 0.2s,
+          background 0.2s;
+      }
+      .lang-opt-m:hover,
+      .lang-opt-m.active {
+        border-color: var(--accent, #c8ff00);
+        color: var(--accent, #c8ff00);
+        background: rgba(200, 255, 0, 0.06);
+      }
+      .lang-opt-m img {
+        border-radius: 2px;
+        width: 24px;
+        height: 16px;
+        object-fit: cover;
+      }
+
+      /* ══ CASE STUDY VISUAL ANIMATIONS ════════════════════════════ */
+      .case-anim {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .case-anim svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        overflow: visible;
+      }
+
+      /* Strata — dashboard bars */
+      @keyframes cs-bar-fill {
+        0%,
+        100% {
+          transform: scaleY(0.2);
+          opacity: 0.4;
+        }
+        60% {
+          transform: scaleY(1);
+          opacity: 0.85;
+        }
+      }
+      @keyframes cs-line-scan {
+        0% {
+          stroke-dashoffset: 200;
+          opacity: 0;
+        }
+        15% {
+          opacity: 1;
+        }
+        70%,
+        100% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+      }
+      @keyframes cs-blink {
+        0%,
+        49%,
+        100% {
+          opacity: 1;
+        }
+        50%,
+        99% {
+          opacity: 0;
+        }
+      }
+
+      /* Velour — grid items pop in */
+      @keyframes cs-pop-in {
+        0%,
+        100% {
+          transform: scale(0.7);
+          opacity: 0;
+        }
+        60% {
+          transform: scale(1.04);
+          opacity: 0.55;
+        }
+        75% {
+          transform: scale(1);
+          opacity: 0.45;
+        }
+      }
+
+      /* Meridian — trend line draw */
+      @keyframes cs-trend-draw {
+        0% {
+          stroke-dashoffset: 360;
+        }
+        70%,
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes cs-dot-pulse {
+        0%,
+        55% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        75% {
+          opacity: 1;
+          transform: scale(1.3);
+        }
+        100% {
+          opacity: 0.8;
+          transform: scale(1);
+        }
+      }
+      /* ════════════════════════════════════════════════════════════ */
+
+      /* Container to hold the line and hide overflow */
+      .glowing-line-container {
+        width: 100%;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(245, 242, 237, 0.05); /* Very faint base line */
+        position: relative;
+      }
+
+      .glowing-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 500%; /* Double width for seamless looping */
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          transparent 0%,
+          transparent 40%,
+          var(--accent) 50%,
+          transparent 60%,
+          transparent 100%
+        );
+        box-shadow: 0 0 15px var(--accent); /* The glow effect */
+        animation: moveLeft 5s linear infinite;
+      }
+
+      /* Animation to move the glow to the left */
+      @keyframes moveLeft {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="nav">
+      <div class="nav-left">
+        <div class="nav-logo1">
+          <img src="IMG_8501.png" width="35px" height="20px" />
+        </div>
+        <a href="index.html" class="nav-logo">Nexora</a>
+      </div>
+
+      <ul class="nav-links">
+        <li>
+          <a href="index.html" data-i18n="nav_home">Home</a>
+        </li>
+        <li><a href="services.html" data-i18n="nav_services">Services</a></li>
+        <li>
+          <a href="portfolio.html" style="color: white" data-i18n="nav_work"
+            >Work</a
+          >
+        </li>
+        <li><a href="about.html" data-i18n="nav_about">About</a></li>
+        <li><a href="blog.html" data-i18n="nav_blog">Blog</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="contact.html" class="nav-cta" data-i18n="nav_cta"
+          >View Services</a
+        >
+
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">
+        <span></span><span></span>
+      </button>
+      <a href="index.html" data-i18n="nav_home">Home</a>
+      <a href="services.html" data-i18n="nav_services">Services</a>
+      <a href="portfolio.html" style="color: white" data-i18n="nav_work"
+        >Work</a
+      >
+      <a href="about.html" data-i18n="nav_about">About</a>
+      <a href="blog.html" data-i18n="nav_blog">Blog</a>
+      <a href="contact.html" data-i18n="nav_contact">Contact</a>
+
+      <a href="contact.html" class="mobile-menu-cta" data-i18n="nav_cta"
+        >View Services</a
+      >
+    </div>
+
+    <div class="page-hero">
+      <div class="page-hero-bg"></div>
+      <div class="page-tag" data-i18n="port_page_tag">Portfolio</div>
+      <h1 data-i18n="port_h1_1">
+        Work that<br /><em data-i18n="port_h1_2">speaks for itself.</em>
+      </h1>
+      <p class="page-hero-sub" data-i18n="port_sub">
+        Every project here started with a real business problem. Here's what we
+        built, and what happened next.
+      </p>
+    </div>
+
+    <div class="glowing-line-container">
+      <div class="glowing-line"></div>
+    </div>
+
+    <section>
+      <div class="filter-bar reveal" id="filterBar">
+        <button class="filter-btn active" data-filter="all">
+          All projects
+        </button>
+        <button class="filter-btn" data-filter="web">Web Design</button>
+        <button class="filter-btn" data-filter="dev">Development</button>
+        <button class="filter-btn" data-filter="ecom">E-Commerce</button>
+        <button class="filter-btn" data-filter="brand">Branding</button>
+        <button class="filter-btn" data-filter="saas">SaaS</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <div class="project-card show" data-tags="web dev saas">
+          <div class="project-card-inner">
+            <div
+              class="project-card-bg c1"
+              style="
+                background-image: url(&quot;Screenshot 2026-04-26 163543.png&quot;);
+              "
+            ></div>
+
+            <div class="card-mock">
+              <div class="card-mock-bar" style="width: 70%"></div>
+              <div class="card-mock-bar" style="width: 45%"></div>
+              <div class="card-mock-row">
+                <div class="card-mock-block" style="height: 80px"></div>
+                <div class="card-mock-block" style="height: 80px"></div>
+              </div>
+              <div class="card-mock-bar" style="width: 60%"></div>
+            </div>
+
+            <div class="project-overlay">
+              <div class="project-tags">
+                <span class="project-tag">UI/UX</span
+                ><span class="project-tag">Web App</span
+                ><span class="project-tag">Mechanic Shop</span>
+              </div>
+              <div class="project-title">Pro Tech</div>
+
+              <div class="project-result">
+                Full platform redesign → <strong>+62% trial signups</strong>
+              </div>
+              <a href="#strata" class="project-link"
+                >Read case study
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <path d="M2 10L10 2M10 2H5M10 2V7" /></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card show" data-tags="ecom web">
+          <div class="project-card-inner">
+            <div
+              class="project-card-bg c2"
+              style="
+                background-image: url(&quot;Screenshot 2026-04-24 225524.png&quot;);
+              "
+            ></div>
+            <div class="card-mock">
+              <div class="card-mock-bar" style="width: 55%"></div>
+              <div
+                style="
+                  height: 50px;
+                  background: rgba(255, 255, 255, 0.08);
+                  border-radius: 4px;
+                  margin: 8px 0;
+                "
+              ></div>
+              <div class="card-mock-bar" style="width: 80%"></div>
+              <div class="card-mock-bar" style="width: 40%"></div>
+            </div>
+            <div class="project-overlay">
+              <div class="project-tags">
+                <span class="project-tag">SaaS</span
+                ><span class="project-tag">Hotel</span>
+              </div>
+              <div class="project-title">Hotel Lux</div>
+              <div class="project-result">
+                New website → <strong>+38% conversion rate</strong>
+              </div>
+              <a href="#velour" class="project-link"
+                >Read case study
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <path d="M2 10L10 2M10 2H5M10 2V7" /></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card show" data-tags="brand web dev">
+          <div class="project-card-inner">
+            <div
+              class="project-card-bg c3"
+              style="
+                background-image: url(&quot;Screenshot 2026-04-24 225501.png&quot;);
+              "
+            ></div>
+            <div class="card-mock">
+              <div class="card-mock-bar" style="width: 40%"></div>
+              <div class="card-mock-bar" style="width: 75%"></div>
+              <div class="card-mock-row" style="margin-top: 8px">
+                <div class="card-mock-block" style="height: 60px"></div>
+                <div class="card-mock-block" style="height: 60px"></div>
+                <div class="card-mock-block" style="height: 60px"></div>
+              </div>
+            </div>
+            <div class="project-overlay">
+              <div class="project-tags">
+                <span class="project-tag">Branding</span
+                ><span class="project-tag">Dentist</span>
+              </div>
+              <div class="project-title">My Dent</div>
+              <div class="project-result">
+                Full rebrand → <strong>1.2s avg. load time</strong>
+              </div>
+              <a href="#meridian" class="project-link"
+                >Read case study
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <path d="M2 10L10 2M10 2H5M10 2V7" /></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card show" data-tags="dev saas web">
+          <div class="project-card-inner">
+            <div
+              class="project-card-bg c4"
+              style="
+                background-image: url(&quot;Screenshot 2026-04-24 225658.png&quot;);
+              "
+            ></div>
+            <div class="card-mock">
+              <div class="card-mock-bar" style="width: 60%"></div>
+              <div class="card-mock-row" style="margin-top: 8px">
+                <div class="card-mock-block" style="height: 100px"></div>
+                <div
+                  class="card-mock-block"
+                  style="height: 100px; flex: 1.5"
+                ></div>
+              </div>
+            </div>
+            <div class="project-overlay">
+              <div class="project-tags">
+                <span class="project-tag">SaaS</span
+                ><span class="project-tag">Development</span>
+              </div>
+              <div class="project-title">Estetique</div>
+              <div class="project-result">
+                Dashboard rebuild → <strong>54% faster task completion</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card show" data-tags="ecom brand">
+          <div class="project-card-inner">
+            <div
+              class="project-card-bg c5"
+              style="
+                background-image: url(&quot;Screenshot 2026-04-24 225608.png&quot;);
+              "
+            ></div>
+            <div class="card-mock">
+              <div class="card-mock-bar" style="width: 50%"></div>
+              <div
+                style="
+                  height: 70px;
+                  background: rgba(255, 255, 255, 0.06);
+                  border-radius: 4px;
+                  margin: 10px 0;
+                "
+              ></div>
+              <div class="card-mock-bar" style="width: 35%"></div>
+            </div>
+            <div class="project-overlay">
+              <div class="project-tags">
+                <span class="project-tag">Reservations</span
+                ><span class="project-tag">Branding</span>
+              </div>
+              <div class="project-title">Hartford & Co.</div>
+              <div class="project-result">
+                New brand + reservation form →
+                <strong>+$280k in year-one revenue</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card show" data-tags="web brand">
+          <div class="project-card-inner">
+            <div
+              class="project-card-bg c6"
+              style="
+                background-image: url(&quot;Screenshot 2026-04-01 204200.png&quot;);
+              "
+            ></div>
+            <div class="card-mock">
+              <div class="card-mock-row">
+                <div
+                  class="card-mock-block"
+                  style="height: 40px; flex: 0.4"
+                ></div>
+                <div
+                  class="card-mock-block"
+                  style="height: 40px; flex: 1"
+                ></div>
+              </div>
+              <div
+                class="card-mock-bar"
+                style="width: 90%; margin-top: 10px"
+              ></div>
+              <div class="card-mock-bar" style="width: 60%"></div>
+            </div>
+            <div class="project-overlay">
+              <div class="project-tags">
+                <span class="project-tag">Web Design</span
+                ><span class="project-tag">Branding</span>
+                <span class="project-tag">E-commerce</span>
+              </div>
+              <div class="project-title">Leclipse</div>
+              <div class="project-result">
+                Brand refresh + launch →
+                <strong>3× organic traffic in 90 days</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section style="padding-top: 0">
+      <div class="section-label reveal" data-i18n="port_cs_lbl">
+        Featured case studies
+      </div>
+
+      <div class="case-study reveal" id="velour">
+        <div class="case-study-header">
+          <div class="case-study-visual" style="order: -1">
+            <div
+              class="case-visual-bg v2"
+              style="
+                background-image: url(&quot;Screenshot 2026-04-24 225524.png&quot;);
+              "
+            ></div>
+            <div class="case-visual-mock">
+              <div
+                class="case-visual-mock-block"
+                style="grid-column: 1/-1; height: 80px"
+              ></div>
+              <div class="case-visual-mock-block"></div>
+              <div class="case-visual-mock-block"></div>
+            </div>
+          </div>
+          <div class="case-study-info">
+            <div class="case-num" data-i18n="cs_02">Case study 02</div>
+            <div class="case-client">Hotel Lux</div>
+            <div class="case-industry">SaaS · Dentist</div>
+            <div class="case-divider"></div>
+            <div class="case-challenge-label" data-i18n="cs_challenge">
+              The challenge
+            </div>
+            <div class="case-challenge">
+              Hotel Lux was running on an out-of-the-box website theme that made
+              them look like every other hotel. Their conversion rate sat at
+              1.4% — well below industry average — and mobile UX was broken.
+            </div>
+            <div class="case-approach-label" data-i18n="cs_approach">
+              Our approach
+            </div>
+            <div class="case-approach">
+              We redesigned the full storefront from ground up: custom page
+              layout, sticky add-to-cart, optimised image loading, and a rebuilt
+              reservation flow with trust signals and upsell logic.
+            </div>
+            <div class="case-metrics">
+              <div>
+                <div class="case-metric-num">+38%</div>
+                <div class="case-metric-label" data-i18n="metric_conv">
+                  Conversion rate
+                </div>
+              </div>
+              <div>
+                <div class="case-metric-num">+21%</div>
+                <div class="case-metric-label" data-i18n="metric_avg_ord">
+                  Avg. order value
+                </div>
+              </div>
+              <div>
+                <div class="case-metric-num">2.8×</div>
+                <div class="case-metric-label" data-i18n="metric_mobile">
+                  Mobile revenue
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-study reveal" id="meridian">
+        <div class="case-study-header">
+          <div class="case-study-info">
+            <div class="case-num" data-i18n="cs_03">Case study 03</div>
+            <div class="case-client">My Dent</div>
+            <div class="case-industry">Branding · Fast Food</div>
+            <div class="case-divider"></div>
+            <div class="case-challenge-label" data-i18n="cs_challenge">
+              The challenge
+            </div>
+            <div class="case-challenge">
+              My Dent was a 12-year-old clynic with outdated branding that no
+              longer reflected their ambition. Their site loaded in 6.2 seconds
+              and had no mobile experience to speak of.
+            </div>
+            <div class="case-approach-label" data-i18n="cs_approach">
+              Our approach
+            </div>
+            <div class="case-approach">
+              Full brand identity rebuild followed by a complete site redesign
+              and redevelopment in Next.js. We cut load time by 80%, introduced
+              a case study framework, and created a content system their team
+              can manage independently.
+            </div>
+            <div class="case-metrics">
+              <div>
+                <div class="case-metric-num">1.2s</div>
+                <div class="case-metric-label">Load time (was 6.2s)</div>
+              </div>
+              <div>
+                <div class="case-metric-num">+190%</div>
+                <div class="case-metric-label" data-i18n="metric_organic">
+                  Organic sessions
+                </div>
+              </div>
+              <div>
+                <div class="case-metric-num">4×</div>
+                <div class="case-metric-label" data-i18n="metric_inbound">
+                  Inbound leads
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="case-study-visual">
+            <div
+              class="case-visual-bg v3"
+              style="
+                background-image: url(&quot;Screenshot 2026-04-24 225501.png&quot;);
+              "
+            ></div>
+            <div class="case-visual-mock">
+              <div class="case-visual-mock-block"></div>
+              <div class="case-visual-mock-block"></div>
+              <div class="case-visual-mock-block"></div>
+              <div class="case-visual-mock-block"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top: 0; padding-bottom: 120px">
+      <div class="cta-strip reveal">
+        <div class="cta-strip-title">
+          Want results<br /><em>like these?</em>
+        </div>
+        <div
+          style="display: flex; gap: 16px; align-items: center; flex-shrink: 0"
+        >
+          <a href="contact.html" class="btn-cta" data-i18n="btn_start_proj2"
+            >Start your project</a
+          >
+          <a
+            href="services.html"
+            class="btn-secondary"
+            data-i18n="btn_see_svc"
+            data-i18n="btn_see_svc"
+            >See our services</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <img src="IMG_8501.png" width="35px" height="20px" />Nexora
+          </div>
+          <div class="footer-tagline" data-i18n="footer_tag">
+            Digital agency for brands that mean business.
+          </div>
+        </div>
+        <div class="footer-nav">
+          <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer_col_svc">
+              Services
+            </div>
+            <a href="services.html#services" data-i18n="svc_wd_title"
+              >Web Design</a
+            >
+            <a href="services.html#services" data-i18n="svc_dev_title"
+              >Development</a
+            >
+            <a href="services.html#services" data-i18n="svc_seo_title"
+              >SEO & Performance</a
+            >
+            <a href="services.html#services" data-i18n="svc_ec_title"
+              >E-Commerce</a
+            >
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer_col_co">
+              Company
+            </div>
+            <a href="about.html" data-i18n="nav_about">About</a>
+            <a href="portfolio.html" data-i18n="nav_work">Work</a>
+            <a href="blog.html" data-i18n="nav_blog">Blog</a>
+            <a href="contact.html" data-i18n="nav_contact">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          <span data-i18n="footer_copy"
+            >© 2026 Nexora Digital Agency. All rights reserved.</span
+          >
+        </div>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/nexora-digital-2995223b8"
+            >LinkedIn</a
+          >
+          <a
+            href="https://www.instagram.com/nexora_digital.mk?igsh=MTdkZGppNXJ5cWRneQ%3D%3D&utm_source=qr"
+            >Instagram</a
+          >
+          <a
+            href="https://www.tiktok.com/@nexora.digital.mk?_r=1&_t=ZS-95nyX2uaS16"
+            >Tik Tok</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- NEXORA MULTILINGUAL: EN | MK | SQ -->
+    <script>
+      var _NX = {
+        nav_home: { en: "Home", mk: "Почетна", sq: "Ballina" },
+        nav_services: { en: "Services", mk: "Услуги", sq: "Shërbimet" },
+        nav_work: { en: "Work", mk: "Работи", sq: "Punët" },
+        nav_about: { en: "About", mk: "За нас", sq: "Rreth nesh" },
+        nav_blog: { en: "Blog", mk: "Блог", sq: "Blogu" },
+        nav_contact: { en: "Contact", mk: "Контакт", sq: "Kontakti" },
+        nav_cta: { en: "View Services", mk: "Услуги", sq: "Shërbimet" },
+        footer_tag: {
+          en: "Digital agency for brands that mean business.",
+          mk: "Дигитална агенција за брендови со сериозна намера.",
+          sq: "Agjenci dixhitale për marka me ambicie serioze.",
+        },
+        footer_copy: {
+          en: "© 2026 Nexora Digital Agency. All rights reserved.",
+          mk: "© 2026 Nexora Digital Agency. Сите права се задржани.",
+          sq: "© 2026 Nexora Digital Agency. Të gjitha të drejtat janë të rezervuara.",
+        },
+        footer_col_svc: { en: "Services", mk: "Услуги", sq: "Shërbimet" },
+        footer_col_co: { en: "Company", mk: "Компанија", sq: "Kompania" },
+        hero_tag: {
+          en: "Digital Agency — Est. 2024",
+          mk: "Дигитална Агенција — Осн. 2024",
+          sq: "Agjenci Dixhitale — Est. 2024",
+        },
+        hero_h1_1: { en: "We build", mk: "Ние градиме", sq: "Ne ndërtojmë" },
+        hero_h1_2: {
+          en: "websites that",
+          mk: "веб-сајтови кои",
+          sq: "faqe interneti që",
+        },
+        hero_h1_3: { en: "actually", mk: "навистина", sq: "vërtet" },
+        hero_h1_4: { en: "work.", mk: "работат.", sq: "funksionojnë." },
+        hero_sub: {
+          en: "Design-led development for startups and growing brands who want more than a pretty template.",
+          mk: "Развој воден од дизајн за стартапи и растечки брендови кои сакаат повеќе од убав шаблон.",
+          sq: "Zhvillim i udhëhequr nga dizajni për startup-et dhe markat në rritje që duan më shumë se një shabllon.",
+        },
+        btn_see_work: {
+          en: "See our work",
+          mk: "Видете ги нашите работи",
+          sq: "Shikoni punët tona",
+        },
+        btn_start_proj: {
+          en: "Start a project",
+          mk: "Започнете проект",
+          sq: "Filloni një projekt",
+        },
+        scroll_lbl: { en: "Scroll", mk: "Скролувај", sq: "Lëviz" },
+        trusted_by: { en: "Trusted by", mk: "Им веруваат", sq: "Besuar nga" },
+        lbl_what_we_do: {
+          en: "What we do",
+          mk: "Што правиме",
+          sq: "Çfarë bëjmë",
+        },
+        svc_wd_title: { en: "Web Design", mk: "Веб Дизајн", sq: "Dizajn Web" },
+        svc_wd_desc: {
+          en: "Custom interfaces built around your brand identity and your customers' expectations — no templates.",
+          mk: "Прилагодени интерфејси изградени околу вашиот бренд идентитет и очекувањата на вашите клиенти — без шаблони.",
+          sq: "Ndërfaqe të personalizuara të ndërtuara rreth identitetit të markës tuaj dhe pritshmërive të klientëve — pa shabllone.",
+        },
+        svc_dev_title: { en: "Development", mk: "Развој", sq: "Zhvillimi" },
+        svc_dev_desc: {
+          en: "Fast, accessible, scalable code. From marketing sites to full-stack web apps — we ship clean builds.",
+          mk: "Брз, достапен, скалабилен код. Од маркетинг сајтови до full-stack апликации — испорачуваме чисти изградби.",
+          sq: "Kod i shpejtë, i aksesueshëm, i shkallëzueshëm. Nga faqet e marketingut deri te aplikacionet web.",
+        },
+        svc_seo_title: {
+          en: "SEO & Performance",
+          mk: "SEO & Перформанси",
+          sq: "SEO & Performanca",
+        },
+        svc_seo_desc: {
+          en: "Sites that load in under 2 seconds and rank. We optimise everything from Core Web Vitals to structured data.",
+          mk: "Сајтови кои се вчитуваат за под 2 секунди и рангираат. Ги оптимизираме сите аспекти.",
+          sq: "Faqe që ngarkohen në nën 2 sekonda dhe renditen lart.",
+        },
+        svc_brand_title: {
+          en: "Brand Identity",
+          mk: "Бренд Идентитет",
+          sq: "Identiteti i Markës",
+        },
+        svc_brand_desc: {
+          en: "Logo, color, typography, and voice — a system that works everywhere from business cards to billboards.",
+          mk: "Лого, боја, типографија и глас — систем кој функционира насекаде.",
+          sq: "Logo, ngjyrë, tipografi dhe zë — një sistem që funksionon kudo.",
+        },
+        svc_ec_title: { en: "E-Commerce", mk: "Е-Трговија", sq: "E-Commerce" },
+        svc_ec_desc: {
+          en: "Shopify and custom stores built to convert. Product pages, checkout flows, and post-purchase experiences.",
+          mk: "Shopify и прилагодени продавници изградени за конверзија.",
+          sq: "Dyqane Shopify dhe të personalizuara të ndërtuara për të konvertuar.",
+        },
+        svc_gr_title: {
+          en: "Growth & Analytics",
+          mk: "Раст & Аналитика",
+          sq: "Rritja & Analitika",
+        },
+        svc_gr_desc: {
+          en: "We don't disappear after launch. Ongoing strategy, A/B testing, and conversion optimisation to grow revenue.",
+          mk: "Не исчезнуваме по лансирањето. Постојана стратегија, A/B тестирање и оптимизација.",
+          sq: "Nuk zhdukem pas lançimit. Strategji e vazhdueshme, testim A/B dhe optimizim konvertimi.",
+        },
+        learn_more: {
+          en: "Learn more",
+          mk: "Дознајте повеќе",
+          sq: "Mëso më shumë",
+        },
+        selected_lbl: { en: "Selected", mk: "Избрани", sq: "Të zgjedhura" },
+        work_em: { en: "work", mk: "работи", sq: "punë" },
+        view_all_proj: {
+          en: "View all projects",
+          mk: "Сите проекти",
+          sq: "Të gjitha projektet",
+        },
+        new_website_res: {
+          en: "New Website → ",
+          mk: "Нов веб-сајт → ",
+          sq: "Faqe e re → ",
+        },
+        new_store_res: {
+          en: "New store → ",
+          mk: "Нова продавница → ",
+          sq: "Dyqan i ri → ",
+        },
+        full_rebrand_res: {
+          en: "Full rebrand → ",
+          mk: "Целосен ребренд → ",
+          sq: "Ribrandim i plotë → ",
+        },
+        lbl_reviews: {
+          en: "Client reviews",
+          mk: "Рецензии на клиентите",
+          sq: "Vlerësimet e klientëve",
+        },
+        lbl_leave_rev: {
+          en: "Leave a review",
+          mk: "Оставете рецензија",
+          sq: "Lini një vlerësim",
+        },
+        rev_form_sub: {
+          en: "Worked with us? We'd love to hear what you think — your review helps other businesses find us.",
+          mk: "Работевте со нас? Би сакале да го слушнеме вашето мислење — вашата рецензија им помага на другите да не најдат.",
+          sq: "Keni punuar me ne? Do të donim të dëgjonim mendimin tuaj — vlerësimi juaj ndihmon bizneset e tjera të na gjejnë.",
+        },
+        ph_your_name: { en: "Your name", mk: "Вашето ime", sq: "Emri juaj" },
+        ph_your_role: {
+          en: "Your role / company",
+          mk: "Улога / компанија",
+          sq: "Roli / kompania",
+        },
+        ph_experience: {
+          en: "Share your experience with Nexora...",
+          mk: "Споделете го вашето искуство со Nexora...",
+          sq: "Ndani përvojën tuaj me Nexora...",
+        },
+        btn_post_rev: {
+          en: "Post review",
+          mk: "Испрати рецензија",
+          sq: "Dërgo vlerësimin",
+        },
+        nexora_client: {
+          en: "Nexora Client",
+          mk: "Nexora Клиент",
+          sq: "Klient Nexora",
+        },
+        edit_btn: { en: "✎ Edit", mk: "✎ Уреди", sq: "✎ Ndrysho" },
+        edit_rev_title: {
+          en: "Edit your review",
+          mk: "Уредете ја вашата рецензија",
+          sq: "Ndryshoni vlerësimin tuaj",
+        },
+        ph_review: {
+          en: "Your review…",
+          mk: "Вашата рецензија…",
+          sq: "Vlerësimi juaj…",
+        },
+        ph_role_opt: {
+          en: "Your role / company (optional)",
+          mk: "Улога / компанија (опционално)",
+          sq: "Roli / kompania (opsionale)",
+        },
+        save_changes: {
+          en: "Save changes",
+          mk: "Зачувај промени",
+          sq: "Ruaj ndryshimet",
+        },
+        cancel_btn: { en: "Cancel", mk: "Откажи", sq: "Anulo" },
+        toast_title: {
+          en: "Thanks for leaving a review!",
+          mk: "Ви благодариме за рецензијата!",
+          sq: "Faleminderit për vlerësimin!",
+        },
+        toast_sub: {
+          en: "Your review is now live for everyone to see.",
+          mk: "Вашата рецензија е сега видлива за сите.",
+          sq: "Vlerësimi juaj është tani i dukshëm për të gjithë.",
+        },
+        lbl_why: { en: "Why Nexora", mk: "Зошто Nexora", sq: "Pse Nexora" },
+        why_big_1: {
+          en: "We treat your",
+          mk: "Го третираме вашиот",
+          sq: "E trajtojmë",
+        },
+        why_big_2: {
+          en: "project like",
+          mk: "проект како",
+          sq: "projektin tuaj si",
+        },
+        why_big_3: { en: "our own.", mk: "наш сопствен.", sq: "tonat." },
+        why_desc: {
+          en: "Most agencies hand you a template, call it custom, and vanish after launch. We're built differently — small, focused, and obsessed with outcomes over optics.",
+          mk: "Повеќето агенции ви даваат шаблон, го нарекуваат прилагоден и исчезнуваат. Ние сме изградени поинаку — мали, фокусирани, опседнати со резултати.",
+          sq: "Shumica e agjencive ju japin shabllon dhe zhduken. Ne jemi ndërtuar ndryshe — të vegjël, të fokusuar, të obsesionuar me rezultate.",
+        },
+        why_1_t: {
+          en: "Outcome-first thinking",
+          mk: "Размислување насочено кон резултати",
+          sq: "Të menduarit me rezultate",
+        },
+        why_1_d: {
+          en: "Every decision — from font choice to site architecture — ties back to your business goals.",
+          mk: "Секоја одлука — од фонтот до архитектурата — е поврзана со вашите цели.",
+          sq: "Çdo vendim — nga fonti deri te arkitektura — lidhet me qëllimet tuaja.",
+        },
+        why_2_t: {
+          en: "No handoff hell",
+          mk: "Без хаос при предавање",
+          sq: "Pa kaos gjatë dorëzimit",
+        },
+        why_2_d: {
+          en: "Design and development happen under one roof. No miscommunication between teams, no delay.",
+          mk: "Дизајнот и развојот се под еден покрив. Без недоразбирања, без одложување.",
+          sq: "Dizajni dhe zhvillimi ndodhin nën një çati. Pa keqkomunikim, pa vonesa.",
+        },
+        why_3_t: {
+          en: "Built to last",
+          mk: "Изградено за трајност",
+          sq: "Ndërtuar për të zgjatur",
+        },
+        why_3_d: {
+          en: "We write clean, documented code so your team can maintain it — or we will.",
+          mk: "Пишуваме чист, документиран код за да може вашиот тим да го одржува — или ние ќе го правиме тоа.",
+          sq: "Shkruajmë kod të pastër dhe të dokumentuar.",
+        },
+        why_4_t: {
+          en: "Radical transparency",
+          mk: "Радикална транспарентност",
+          sq: "Transparencë radikale",
+        },
+        why_4_d: {
+          en: "Weekly updates, honest timelines, and no surprise invoices. You always know where things stand.",
+          mk: "Неделни ажурирања, искрени рокови и никакви изненадувачки фактури. Секогаш знаете каде се наоѓа работата.",
+          sq: "Përditësime javore, afate të ndershme dhe asnjë faturë surprizë.",
+        },
+        stat_shipped: {
+          en: "Projects shipped",
+          mk: "Испорачани проекти",
+          sq: "Projekte të realizuara",
+        },
+        stat_sat: {
+          en: "Client satisfaction",
+          mk: "Задоволство на клиентите",
+          sq: "Kënaqësia e klientit",
+        },
+        stat_load: {
+          en: "Avg. load time",
+          mk: "Просечно вчитување",
+          sq: "Koha mesatare e ngarkimit",
+        },
+        stat_conv: {
+          en: "Avg. conversion lift",
+          mk: "Просечно зголемување на конверзија",
+          sq: "Rritja mesatare e konvertimit",
+        },
+        cta_eyebrow: {
+          en: "Let's build something",
+          mk: "Да изградиме нешто",
+          sq: "Le të ndërtojmë diçka",
+        },
+        cta_h2_1: {
+          en: "Ready to grow",
+          mk: "Готови за раст на",
+          sq: "Gati të rritni",
+        },
+        cta_h2_2: {
+          en: "your business?",
+          mk: "вашиот бизнис?",
+          sq: "biznesin tuaj?",
+        },
+        btn_view_svc: { en: "View Services", mk: "Услуги", sq: "Shërbimet" },
+        btn_discovery: {
+          en: "Book a discovery call",
+          mk: "Закажете повик",
+          sq: "Rezervoni thirrje",
+        },
+        about_page_tag: {
+          en: "Our story",
+          mk: "Нашата приказна",
+          sq: "Historia jonë",
+        },
+        about_h1_1: { en: "Small team.", mk: "Мал тим.", sq: "Ekip i vogël." },
+        about_h1_2: {
+          en: "Big ambitions.",
+          mk: "Големи амбиции.",
+          sq: "Ambicie të mëdha.",
+        },
+        about_sub: {
+          en: "We started Nexora because we were tired of watching good businesses get mediocre websites. So we built the agency we always wished existed.",
+          mk: "Ја започнавме Nexora затоа што бевме уморни да гледаме добри бизниси да добиваат просечни веб-сајтови. Затоа ја изградивме агенцијата која секогаш сакавме да постои.",
+          sq: "Filluam Nexora sepse u lodhem duke parë biznese të mira që merrnin faqe interneti mediokre. Kështu ndërtuam agjencinë që gjithmonë donim të ekzistonte.",
+        },
+        how_started: {
+          en: "How it started",
+          mk: "Како започна",
+          sq: "Si filloi",
+        },
+        story_p1: {
+          en: "Nexora was founded in 2024 with one belief: <strong>the gap between design and business outcomes shouldn't exist.</strong> Too many agencies optimise for aesthetics or for efficiency — rarely both, and almost never for actual results.",
+          mk: "Nexora беше основана во 2024 со едно верување: <strong>јазот помеѓу дизајнот и бизнис резултатите не треба да постои.</strong> Премногу агенции оптимизираат за естетика или за ефикасност — ретко за двете, и скоро никогаш за вистински резултати.",
+          sq: "Nexora u themelua në 2024 me një bindje: <strong>hendeku midis dizajnit dhe rezultateve të biznesit nuk duhet të ekzistojë.</strong> Shumë agjenci optimizojnë për estetikë ose efikasitet — rrallë për të dyja.",
+        },
+        story_p2: {
+          en: "We started as a one-person studio taking on projects he believed in. Every client taught us something. Every launch sharpened our process. We grew deliberately — not chasing scale, but chasing quality.",
+          mk: "Започнавме како едночлен студио земајќи проекти во кои верувавме. Секој клиент не научи нешто. Секое лансирање го изостри нашиот процес. Растевме намерно — не гонејќи скала, туку гонејќи квалитет.",
+          sq: "Filluam si studio me një person duke marrë projekte në të cilat besonim. Çdo klient na mësoi diçka. Rritëm me qëllim — duke ndjekur cilësinë.",
+        },
+        story_p3: {
+          en: "Today we're a focused team of designers, developers, and strategists who are obsessed with one question: <strong>what's the actual business impact of this decision?</strong> That question drives everything we build.",
+          mk: "Денес сме фокусиран тим на дизајнери, развивачи и стратези кои се опседнати со едно прашање: <strong>какво е вистинското бизнис влијание на оваа одлука?</strong> Тоа прашање го поттикнува сè што градиме.",
+          sq: "Sot jemi ekip i fokusuar dizajnerësh, zhvilluesish dhe strategësh me një pyetje: <strong>cili është ndikimi real i biznesit nga ky vendim?</strong> Ajo pyetje nxit gjithçka.",
+        },
+        est_lbl: { en: "Est.", mk: "Осн.", sq: "Est." },
+        the_team: { en: "The team", mk: "Тимот", sq: "Ekipi" },
+        team_role_1: {
+          en: "Founder & Creative Director",
+          mk: "Основач & Креативен Директор",
+          sq: "Themelues & Drejtor Kreativ",
+        },
+        team_bio_1: {
+          en: "10+ years designing digital products for startups and Fortune 500s. Believes the best design is the kind users don't notice — because it just works.",
+          mk: "10+ години дизајнирање на дигитални производи за стартапи и Fortune 500. Верува дека најдобриот дизајн е оној кој корисниците не го забележуваат — затоа што едноставно функционира.",
+          sq: "10+ vite dizajnim produktesh dixhitale. Beson se dizajni më i mirë është ai që përdoruesit nuk e vërejnë — sepse thjesht funksionon.",
+        },
+        team_role_2: {
+          en: "Lead Developer",
+          mk: "Главен Развивач",
+          sq: "Zhvilluesi Kryesor",
+        },
+        team_bio_2: {
+          en: "Full-stack engineer who writes code like he'll have to maintain it forever — because he will. Specialist in Next.js, performance optimisation, and making things fast.",
+          mk: "Full-stack инженер кој пишува код како да ќе мора да го одржува засекогаш — затоа што ќе мора. Специјалист за Next.js и брзина.",
+          sq: "Inxhinier full-stack që shkruan kod sikur do t'i duhet ta mirëmbajë përgjithmonë. Specialist në Next.js dhe performancë.",
+        },
+        team_role_3: {
+          en: "Strategy & SEO Lead",
+          mk: "Стратегија & SEO Водач",
+          sq: "Strategjia & Udhëheqësi SEO",
+        },
+        team_bio_3: {
+          en: "Former growth lead at two SaaS startups. Joined Nexora to put the analytical rigour of product growth into every project we touch.",
+          mk: "Поранешен водач за раст во два SaaS стартапи. Се приклучи на Nexora за да го внесе аналитичкиот ригор во секој проект.",
+          sq: "Ish-udhëheqës i rritjes në dy startup-e SaaS. U bashkua me Nexora për të vendosur rreptësinë analitike në çdo projekt.",
+        },
+        what_we_believe: {
+          en: "What we believe",
+          mk: "Во што веруваме",
+          sq: "Çfarë besojmë",
+        },
+        val_1_t: {
+          en: "Outcomes over optics",
+          mk: "Резултати над изглед",
+          sq: "Rezultate mbi estetikë",
+        },
+        val_1_d: {
+          en: "Beautiful work that doesn't perform isn't good enough. We measure our success by what happens to your business after we launch — not by how good our portfolio looks.",
+          mk: "Убавата работа која не перформира не е доволна. Нашиот успех го мериме со тоа што се случува со вашиот бизнис по лансирањето.",
+          sq: "Puna e bukur që nuk performon nuk është e mjaftueshme. E matim suksesin nga ajo që ndodh me biznesin tuaj pas lançimit.",
+        },
+        val_2_t: {
+          en: "Craft matters",
+          mk: "Занатот е важен",
+          sq: "Zejtaria ka rëndësi",
+        },
+        val_2_d: {
+          en: "We sweat the details that most people don't notice — because the accumulation of a hundred small right decisions is what separates good work from great work.",
+          mk: "Ние се потиме за деталите кои повеќето луѓе не ги забележуваат — затоа што акумулацијата на сто мали вистински одлуки е тоа што ја разделува добрата работа од одличната.",
+          sq: "Ne djersitemi për detajet që shumica nuk i vërejnë — sepse akumulimi i vendimeve të vogla ndan punën e mirë nga e shkëlqyera.",
+        },
+        val_3_t: {
+          en: "Radical honesty",
+          mk: "Радикална искреност",
+          sq: "Ndershmëri radikale",
+        },
+        val_3_d: {
+          en: "If we think you're making the wrong call, we'll say so. We're not here to execute instructions — we're here to help you build something great, which sometimes means pushing back.",
+          mk: "Ако мислиме дека донесувате погрешна одлука, ќе го кажеме. Не сме тука да извршуваме инструкции — тука сме да ви помогнеме да изградите нешто одлично.",
+          sq: "Nëse mendojmë se po merrni vendimin e gabuar, do ta themi. Jemi këtu t'ju ndihmojmë të ndërtoni diçka të shkëlqyer.",
+        },
+        val_4_t: {
+          en: "Always improving",
+          mk: "Постојано подобрување",
+          sq: "Gjithmonë duke u përmirësuar",
+        },
+        val_4_d: {
+          en: "We run retrospectives on every project, share learnings across the team, and consistently invest in getting better — at our craft, at our process, and at serving our clients.",
+          mk: "Правиме ретроспективи за секој проект, споделуваме знаења и постојано инвестираме во подобрување.",
+          sq: "Bëjmë retrospektiva për çdo projekt dhe investojmë vazhdimisht në përmirësim.",
+        },
+        our_stack: {
+          en: "Our tools & stack",
+          mk: "Нашите алатки & стек",
+          sq: "Mjetet & stacku ynë",
+        },
+        interested_in: {
+          en: "Interested in",
+          mk: "Заинтересирани за",
+          sq: "Të interesuar për",
+        },
+        working_tog: {
+          en: "working together?",
+          mk: "соработка?",
+          sq: "të punojmë bashkë?",
+        },
+        btn_start_conv: {
+          en: "Start a conversation",
+          mk: "Започнете разговор",
+          sq: "Filloni një bisedë",
+        },
+        btn_see_work_1: {
+          en: "See our work first",
+          mk: "Видете ги нашите работи прво",
+          sq: "Shikoni punët tona fillimisht",
+        },
+        svc_page_tag: {
+          en: "What we offer",
+          mk: "Што нудиме",
+          sq: "Çfarë ofrojmë",
+        },
+        svc_h1_1: { en: "Services that", mk: "Услуги кои", sq: "Shërbime që" },
+        svc_h1_2: {
+          en: "move the needle.",
+          mk: "движат напред.",
+          sq: "bëjnë ndryshim.",
+        },
+        svc_page_sub: {
+          en: "Every service we offer connects directly to a business outcome. No fluff, no filler — just the work that grows your company.",
+          mk: "Секоја услуга која ја нудиме е директно поврзана со бизнис резултат. Без излишности — само работа која го зголемува вашиот бизнис.",
+          sq: "Çdo shërbim që ofrojmë lidhet drejtpërdrejt me një rezultat biznesi. Pa mbushës — vetëm punë që rrit kompaninë tuaj.",
+        },
+        our_services: {
+          en: "Our services",
+          mk: "Нашите услуги",
+          sq: "Shërbimet tona",
+        },
+        whats_included: {
+          en: "What's included",
+          mk: "Што е вклучено",
+          sq: "Çfarë përfshihet",
+        },
+        lets_talk: { en: "Let's talk", mk: "Да зборуваме", sq: "Le të flasim" },
+        svc_wd_full: {
+          en: "Custom interfaces that reflect your brand and convert your visitors. We design for humans first — every layout, every interaction, every micro-detail is intentional. No templates, no shortcuts.",
+          mk: "Прилагодени интерфејси кои го одразуваат вашиот бренд и ги конвертираат посетителите. Дизајнираме за луѓе прво — секој распоред, секоја интеракција е намерна. Без шаблони, без кратенки.",
+          sq: "Ndërfaqe të personalizuara që reflektojnë markën tuaj dhe konvertojnë vizitorët. Dizajnojmë për njerëzit — çdo paraqitje dhe ndërveprim është i qëllimshëm. Pa shabllone.",
+        },
+        svc_dev_full: {
+          en: "Fast, accessible, and maintainable code that scales with your business. We build everything from marketing sites to full-stack web apps — clean, documented, and handed off with care.",
+          mk: "Брз, достапен и одржлив код кој расте со вашиот бизнис. Градиме сè — од маркетинг сајтови до full-stack апликации — чисти, документирани и предадени со грижа.",
+          sq: "Kod i shpejtë, i aksesueshëm dhe i mirëmbajtur që rritet me biznesin tuaj. Ndërtojmë gjithçka — nga faqet e marketingut deri te aplikacionet full-stack.",
+        },
+        svc_seo_full: {
+          en: "A beautiful site no one finds is a wasted investment. We optimise for Core Web Vitals, structured data, and on-page SEO so your site ranks, loads fast, and keeps visitors engaged.",
+          mk: "Убав сајт кој никој не го наоѓа е загубена инвестиција. Оптимизираме за Core Web Vitals, структурирани податоци и on-page SEO за да рангира вашиот сајт.",
+          sq: "Faqe e bukur që askush nuk e gjen është investim i humbur. Optimizojmë për Core Web Vitals dhe SEO on-page.",
+        },
+        svc_brand_full: {
+          en: "Your brand is what people remember when you're not in the room. We build identities that are distinct, flexible, and impossible to ignore — from logo through to a full brand system.",
+          mk: "Вашиот бренд е она по кое луѓето ве паметат. Градиме идентитети кои се посебни, флексибилни и невозможни за игнорирање — од лого до целосен бренд систем.",
+          sq: "Marka juaj është ajo që njerëzit kujtojnë. Ndërtojmë identitete të dallueshme dhe të pamundura për t'u injoruar.",
+        },
+        svc_ec_full: {
+          en: "Online stores built to sell. We design and develop Shopify and custom e-commerce experiences with conversion-optimised product pages, seamless checkout, and post-purchase flows that retain customers.",
+          mk: "Онлајн продавници изградени за продажба. Дизајнираме и развиваме Shopify и прилагодени е-трговски искуства со оптимизирани страни за производи.",
+          sq: "Dyqane online të ndërtuara për të shitur. Dizajnojmë dhe zhvillojmë eksperienca Shopify dhe e-commerce me faqe produktesh të optimizuara.",
+        },
+        svc_gr_full: {
+          en: "We don't disappear after launch. Ongoing strategy, A/B testing, and conversion rate optimisation keeps your site performing — not just looking good. We grow with you.",
+          mk: "Не исчезнуваме по лансирањето. Постојана стратегија, A/B тестирање и оптимизација на конверзија го одржуваат вашиот сајт да перформира — не само да изгледа добро. Растеме заедно.",
+          sq: "Nuk zhdukem pas lançimit. Strategji e vazhdueshme, testim A/B dhe optimizim konvertimi e mbajnë faqen tuaj duke performuar. Rritemi bashkë.",
+        },
+        inc_responsive: {
+          en: "Full responsive UI design",
+          mk: "Целосен responsive UI дизајн",
+          sq: "Dizajn UI plotësisht responsive",
+        },
+        inc_custom_ani: {
+          en: "Custom animations & micro-interactions",
+          mk: "Прилагодени анимации",
+          sq: "Animacione të personalizuara",
+        },
+        inc_component: {
+          en: "Component library & design system",
+          mk: "Библиотека на компоненти и дизајн систем",
+          sq: "Bibliotekë komponentësh dhe sistem dizajni",
+        },
+        inc_handoff: {
+          en: "Handoff-ready Figma files",
+          mk: "Figma фајлови готови за предавање",
+          sq: "Skedarë Figma gati për dorëzim",
+        },
+        inc_cms: {
+          en: "CMS integration (Sanity, Contentful)",
+          mk: "CMS интеграција (Sanity, Contentful)",
+          sq: "Integrim CMS (Sanity, Contentful)",
+        },
+        inc_react: {
+          en: "React / Next.js / Webflow builds",
+          mk: "React / Next.js / Webflow изградби",
+          sq: "Ndërtime React / Next.js / Webflow",
+        },
+        inc_api: {
+          en: "API & backend development",
+          mk: "API & backend развој",
+          sq: "Zhvillim API & backend",
+        },
+        inc_deploy: {
+          en: "Deployment & CI/CD setup",
+          mk: "Поставување на CI/CD pipeline",
+          sq: "Konfigurimi i CI/CD",
+        },
+        inc_api2: {
+          en: "API integrations & backend logic",
+          mk: "API интеграции & backend логика",
+          sq: "Integrime API & logjikë backend",
+        },
+        inc_cwv: {
+          en: "Core Web Vitals optimisation",
+          mk: "Оптимизација на Core Web Vitals",
+          sq: "Optimizim i Core Web Vitals",
+        },
+        inc_techseo: {
+          en: "Technical SEO audit & fixes",
+          mk: "Технички SEO аудит и поправки",
+          sq: "Auditim teknik SEO",
+        },
+        inc_content: {
+          en: "Content strategy & keyword mapping",
+          mk: "Стратегија за содржина",
+          sq: "Strategji përmbajtjeje",
+        },
+        inc_schema: {
+          en: "Structured data & schema markup",
+          mk: "Структурирани податоци & schema markup",
+          sq: "Të dhëna të strukturuara & schema markup",
+        },
+        inc_perf_rep: {
+          en: "Monthly performance reporting",
+          mk: "Месечни извештаи за перформанси",
+          sq: "Raportim mujor i performancës",
+        },
+        inc_logo: {
+          en: "Logo design & variations",
+          mk: "Дизајн на лого и варијации",
+          sq: "Dizajni i logos dhe variacionet",
+        },
+        inc_brand_disc: {
+          en: "Brand discovery & moodboarding",
+          mk: "Откривање на бренд & moodboard",
+          sq: "Zbulimi i markës & moodboarding",
+        },
+        inc_palette: {
+          en: "Color palette & typography system",
+          mk: "Палета на бои и типографски систем",
+          sq: "Paleta ngjyrash dhe sistem tipografie",
+        },
+        inc_brand_guide: {
+          en: "Brand guidelines document",
+          mk: "Документ со упатства за бренд",
+          sq: "Dokument udhëzimesh të markës",
+        },
+        inc_brand_voice: {
+          en: "Brand voice & messaging guide",
+          mk: "Водич за глас на брендот",
+          sq: "Udhëzues i zërit të markës",
+        },
+        inc_social: {
+          en: "Social & print asset templates",
+          mk: "Шаблони за социјални мрежи и принт",
+          sq: "Shabllone për social dhe print",
+        },
+        inc_shopify: {
+          en: "Shopify or custom storefront build",
+          mk: "Изградба на Shopify или прилагодена продавница",
+          sq: "Ndërtim dyqani Shopify ose i personalizuar",
+        },
+        inc_cart: {
+          en: "Cart & checkout UX design",
+          mk: "UX дизајн на кошничка и плаќање",
+          sq: "Dizajn UX i karrocës dhe blerjes",
+        },
+        inc_pdp: {
+          en: "Product page & PDP optimisation",
+          mk: "Оптимизација на страница за производ",
+          sq: "Optimizim i faqes së produktit",
+        },
+        inc_email_int: {
+          en: "Email & retention integration",
+          mk: "Интеграција за email и задржување",
+          sq: "Integrim email dhe mbajtjeje",
+        },
+        inc_ecomm_int: {
+          en: "E-commerce & integrations",
+          mk: "Е-трговија & интеграции",
+          sq: "E-commerce & integrime",
+        },
+        inc_analytics: {
+          en: "Analytics & conversion tracking",
+          mk: "Аналитика и следење на конверзии",
+          sq: "Analitikë dhe ndjekje konvertimesh",
+        },
+        inc_ab: {
+          en: "A/B & multivariate testing",
+          mk: "A/B & мултиваријантно тестирање",
+          sq: "Testim A/B dhe multivariante",
+        },
+        inc_ga4: {
+          en: "GA4 & heatmap setup",
+          mk: "Поставување на GA4 & heatmap",
+          sq: "Konfigurimi GA4 & heatmap",
+        },
+        inc_monthly_gr: {
+          en: "Monthly growth reports",
+          mk: "Месечни извештаи за раст",
+          sq: "Raporte mujore rritjeje",
+        },
+        inc_quarterly: {
+          en: "Quarterly strategy review",
+          mk: "Квартален преглед на стратегија",
+          sq: "Rishikim strategjie çdo tremujor",
+        },
+        how_we_work: {
+          en: "How we work",
+          mk: "Kako работиме",
+          sq: "Si punojmë",
+        },
+        proc_discovery: { en: "Discovery", mk: "Откривање", sq: "Zbulimi" },
+        proc_disc_d: {
+          en: "We learn your business, your customers, and your goals — before writing a single line of code.",
+          mk: "Го учиме вашиот бизнис, вашите клиенти и вашите цели — пред да напишеме и еден ред код.",
+          sq: "Mësojmë biznesin tuaj, klientët dhe qëllimet tuaja — para se të shkruajmë edhe një rresht kodi.",
+        },
+        proc_strategy: { en: "Strategy", mk: "Стратегија", sq: "Strategjia" },
+        proc_strat_d: {
+          en: "We define scope, structure, and approach. You get a clear plan before any design starts.",
+          mk: "Дефинираме опсег, структура и пристап. Добивате јасен план пред да започне дизајнот.",
+          sq: "Përcaktojmë fushën, strukturën dhe qasjen. Merrni plan të qartë para se të fillojë dizajni.",
+        },
+        proc_design: { en: "Design", mk: "Дизајн", sq: "Dizajni" },
+        proc_design_d: {
+          en: "Visual design, prototypes, and content — all signed off before development starts.",
+          mk: "Визуелен дизајн, прототипови и содржина — сè одобрено пред да започне развојот.",
+          sq: "Dizajn vizual, prototipe dhe përmbajtje — të gjitha të aprovuara para zhvillimit.",
+        },
+        proc_build: { en: "Build", mk: "Изградба", sq: "Ndërtimi" },
+        proc_build_d: {
+          en: "Clean, fast, accessible code — built to perform and last. Regular check-ins, no surprises.",
+          mk: "Чист, брз, достапен код — изграден за перформанси и трајност. Редовни проверки, без изненадувања.",
+          sq: "Kod i pastër, i shpejtë, i aksesueshëm. Kontrolle të rregullta, pa surpriza.",
+        },
+        proc_launch: { en: "Launch", mk: "Лансирање", sq: "Lançimi" },
+        proc_launch_d: {
+          en: "Thorough QA, staged rollout, and a launch-day guarantee. We're on standby until everything's stable.",
+          mk: "Темелно QA, постепено пуштање и гаранција на ден на лансирање.",
+          sq: "QA i plotë dhe garanci për ditën e lançimit.",
+        },
+        proc_grow: { en: "Grow", mk: "Растеме", sq: "Rritja" },
+        proc_grow_d: {
+          en: "Post-launch reporting, optimisation, and ongoing support — the relationship doesn't end at launch.",
+          mk: "Извештаи по лансирањето, оптимизација и постојана поддршка — односот не завршува со лансирањето.",
+          sq: "Raportim pas lançimit dhe mbështetje e vazhdueshme — marrëdhënia nuk përfundon.",
+        },
+        pricing_lbl: { en: "Pricing", mk: "Цени", sq: "Çmimet" },
+        price_starter: { en: "Starter", mk: "Стартер", sq: "Startuesi" },
+        price_start_d: {
+          en: "A focused website for new businesses and solo founders.",
+          mk: "Фокусиран веб-сајт за нови бизниси и соло основачи.",
+          sq: "Faqe e fokusuar për biznese të reja dhe themelues solo.",
+        },
+        price_from: { en: "From", mk: "Од", sq: "Nga" },
+        price_growth: { en: "Growth", mk: "Раст", sq: "Rritja" },
+        price_growth_d: {
+          en: "For established brands that need a serious digital presence.",
+          mk: "За воспоставени брендови кои имаат потреба од сериозно дигитално присуство.",
+          sq: "Për markat e vendosura që kanë nevojë për prani dixhitale serioze.",
+        },
+        price_scale: { en: "Scale", mk: "Скала", sq: "Shkalla" },
+        price_scale_d: {
+          en: "Complex builds — platforms, marketplaces, and custom web applications.",
+          mk: "Сложени изградби — платформи, пазари и прилагодени веб апликации.",
+          sq: "Ndërtime komplekse — platforma, tregje dhe aplikacione web të personalizuara.",
+        },
+        most_popular: {
+          en: "Most popular",
+          mk: "Најпопуларно",
+          sq: "Më popullorja",
+        },
+        btn_get_quote: {
+          en: "Get a quote",
+          mk: "Добијте понуда",
+          sq: "Merrni ofertë",
+        },
+        btn_get_started: { en: "Get started", mk: "Започнете", sq: "Filloni" },
+        price_one_time: {
+          en: "one-time project fee",
+          mk: "еднократна проектна такса",
+          sq: "tarifë projekti një herë",
+        },
+        price_optional: {
+          en: "one-time + optional retainer",
+          mk: "еднократно + опционален ретејнер",
+          sq: "një herë + retainer opsional",
+        },
+        price_scoped: {
+          en: "scoped per project",
+          mk: "дефинирано по проект",
+          sq: "i përcaktuar sipas projektit",
+        },
+        inc_basic_seo: {
+          en: "Basic SEO setup",
+          mk: "Основна SEO поставка",
+          sq: "Konfigurimi bazë SEO",
+        },
+        inc_contact_f: {
+          en: "Contact form",
+          mk: "Форма за контакт",
+          sq: "Formulari kontaktit",
+        },
+        inc_2rev: {
+          en: "2 rounds of revisions",
+          mk: "2 рунди на ревизии",
+          sq: "2 raunde rishikimesh",
+        },
+        inc_3wks: {
+          en: "Delivered in 3 weeks",
+          mk: "Испорачано за 3 недели",
+          sq: "Dorëzuar në 3 javë",
+        },
+        inc_5pages: {
+          en: "Up to 5 pages",
+          mk: "До 5 страници",
+          sq: "Deri në 5 faqe",
+        },
+        inc_mobile_first: {
+          en: "Mobile-first design",
+          mk: "Дизајн за мобилни прво",
+          sq: "Dizajn i parë-mobil",
+        },
+        inc_custom_ds: {
+          en: "Custom design system",
+          mk: "Прилагоден дизајн систем",
+          sq: "Sistem dizajni i personalizuar",
+        },
+        inc_12pages: {
+          en: "Up to 12 pages",
+          mk: "До 12 страници",
+          sq: "Deri në 12 faqe",
+        },
+        inc_full_seo: {
+          en: "Full SEO & performance setup",
+          mk: "Целосна SEO и поставка за перформанси",
+          sq: "Konfigurimi i plotë SEO & performancës",
+        },
+        inc_cms_int: {
+          en: "CMS integration",
+          mk: "CMS интеграција",
+          sq: "Integrim CMS",
+        },
+        inc_3rev: {
+          en: "3 rounds of revisions",
+          mk: "3 рунди на ревизии",
+          sq: "3 raunde rishikimesh",
+        },
+        inc_5_6wks: {
+          en: "Delivered in 5–6 weeks",
+          mk: "Испорачано за 5–6 недели",
+          sq: "Dorëzuar në 5–6 javë",
+        },
+        inc_custom_web: {
+          en: "Custom web application",
+          mk: "Прилагодена веб апликација",
+          sq: "Aplikacion web i personalizuar",
+        },
+        inc_unlimited: {
+          en: "Unlimited pages",
+          mk: "Неограничен број на страници",
+          sq: "Faqe të pakufizuara",
+        },
+        inc_ecomm_ready: {
+          en: "E-commerce ready",
+          mk: "Подготвено за е-трговија",
+          sq: "Gati për e-commerce",
+        },
+        inc_full_brand: {
+          en: "Full brand identity",
+          mk: "Целосен бренд идентитет",
+          sq: "Identitet i plotë marke",
+        },
+        inc_custom: { en: "Custom", mk: "Прилагодено", sq: "I personalizuar" },
+        inc_mobile_r: {
+          en: "Mobile responsive",
+          mk: "Mobile responsive",
+          sq: "Mobile responsive",
+        },
+        inc_mobile_t: {
+          en: "Mobile + tablet optimised",
+          mk: "Оптимизирано за мобилни + таблети",
+          sq: "I optimizuar për mobil + tablet",
+        },
+        inc_custom_d2: {
+          en: "Custom design",
+          mk: "Прилагоден дизајн",
+          sq: "Dizajn i personalizuar",
+        },
+        inc_launch_grow: {
+          en: "Launch & Grow",
+          mk: "Лансирање & Раст",
+          sq: "Lançimi & Rritja",
+        },
+        inc_seo_cro: {
+          en: "SEO, analytics & CRO",
+          mk: "SEO, аналитика & CRO",
+          sq: "SEO, analitikë & CRO",
+        },
+        inc_ongoing_gr: {
+          en: "Ongoing growth retainer",
+          mk: "Тековен ретејнер за раст",
+          sq: "Retainer i vazhdueshëm rritjeje",
+        },
+        inc_growth_ret: {
+          en: "Growth retainer",
+          mk: "Ретејнер за раст",
+          sq: "Retainer rritjeje",
+        },
+        inc_land_opt: {
+          en: "Landing page optimisation",
+          mk: "Оптимизација на landing страна",
+          sq: "Optimizim i landing faqes",
+        },
+        inc_perf_acc: {
+          en: "Performance & accessibility audits",
+          mk: "Аудити на перформанси и пристапност",
+          sq: "Auditim performance & aksesueshmërie",
+        },
+        inc_cms_plus: {
+          en: "CMS + integrations",
+          mk: "CMS + интеграции",
+          sq: "CMS + integrime",
+        },
+        not_sure: {
+          en: "Not sure which",
+          mk: "Не сте сигурни кој",
+          sq: "Nuk jeni të sigurt cili",
+        },
+        plan_fits: {
+          en: "plan fits you?",
+          mk: "план ви одговара?",
+          sq: "plan ju përshtatet?",
+        },
+        btn_free_call: {
+          en: "Book a free call",
+          mk: "Закажете бесплатен повик",
+          sq: "Rezervoni thirrje falas",
+        },
+        port_page_tag: {
+          en: "Our work",
+          mk: "Нашите работи",
+          sq: "Punët tona",
+        },
+        port_h1_1: { en: "Work that", mk: "Работа која", sq: "Punë që" },
+        port_h1_2: {
+          en: "speaks for itself.",
+          mk: "зборува само за себе.",
+          sq: "flet vetë.",
+        },
+        port_sub: {
+          en: "Every project here started with a real business problem. Here's what we built, and what happened next.",
+          mk: "Секој проект овде започна со вистински бизнис проблем. Еве што изградивме и што се случи потоа.",
+          sq: "Çdo projekt këtu filloi me një problem real biznesi. Ja çfarë ndërtuam dhe çfarë ndodhi më pas.",
+        },
+        filter_by: {
+          en: "Filter by:",
+          mk: "Филтрирај по:",
+          sq: "Filtro sipas:",
+        },
+        filter_all: { en: "All", mk: "Сите", sq: "Të gjitha" },
+        port_cs_lbl: {
+          en: "Featured case studies",
+          mk: "Истакнати студии на случај",
+          sq: "Studime rastesh të veçanta",
+        },
+        cs_01: {
+          en: "Case study 01",
+          mk: "Студија на случај 01",
+          sq: "Studim rasti 01",
+        },
+        cs_02: {
+          en: "Case study 02",
+          mk: "Студија на случај 02",
+          sq: "Studim rasti 02",
+        },
+        cs_03: {
+          en: "Case study 03",
+          mk: "Студија на случај 03",
+          sq: "Studim rasti 03",
+        },
+        cs_challenge: { en: "The challenge", mk: "Предизвикот", sq: "Sfida" },
+        cs_approach: {
+          en: "Our approach",
+          mk: "Нашиот пристап",
+          sq: "Qasja jonë",
+        },
+        cs_result: { en: "The result", mk: "Резултатот", sq: "Rezultati" },
+        view_cs: {
+          en: "View case study →",
+          mk: "Видете студија на случај →",
+          sq: "Shiko studimin e rastit →",
+        },
+        want_results: {
+          en: "Want results",
+          mk: "Сакате резултати",
+          sq: "Dëshironi rezultate",
+        },
+        like_these: { en: "like these?", mk: "вакви?", sq: "si këto?" },
+        btn_start_proj2: {
+          en: "Start your project",
+          mk: "Започнете го вашиот проект",
+          sq: "Filloni projektin tuaj",
+        },
+        btn_see_svc: {
+          en: "See our services",
+          mk: "Видете ги нашите услуги",
+          sq: "Shikoni shërbimet tona",
+        },
+        metric_bounce: {
+          en: "Bounce rate",
+          mk: "Стапка на напуштање",
+          sq: "Shkalla e braktisjes",
+        },
+        metric_trial: {
+          en: "Trial signups",
+          mk: "Пробни регистрации",
+          sq: "Regjistrimet provuese",
+        },
+        metric_inbound: {
+          en: "Inbound leads",
+          mk: "Дојдовни потенцијални клиенти",
+          sq: "Mundësi të ardhura",
+        },
+        metric_conv: {
+          en: "Conversion rate",
+          mk: "Стапка на конверзија",
+          sq: "Shkalla e konvertimit",
+        },
+        metric_load: {
+          en: "Load time",
+          mk: "Брзина на вчитување",
+          sq: "Koha e ngarkimit",
+        },
+        metric_avg_ord: {
+          en: "Avg. order value",
+          mk: "Просечна вредност на нарачка",
+          sq: "Vlera mesatare e porosisë",
+        },
+        metric_mobile: {
+          en: "Mobile revenue",
+          mk: "Мобилни приходи",
+          sq: "Të ardhura mobile",
+        },
+        metric_organic: {
+          en: "Organic sessions",
+          mk: "Органски сесии",
+          sq: "Sesione organike",
+        },
+        blog_page_tag: {
+          en: "Thoughts & insights",
+          mk: "Мисли & увиди",
+          sq: "Mendime & njohuri",
+        },
+        blog_h1_1: { en: "Ideas worth", mk: "Идеи вредни", sq: "Ide që ia" },
+        blog_h1_2: { en: "reading.", mk: "за читање.", sq: "vlen t'i lexosh." },
+        blog_sub: {
+          en: "Strategy, design, development — and the stuff in between.",
+          mk: "Стратегија, дизајн, развој — и сè помеѓу.",
+          sq: "Strategjia, dizajni, zhvillimi — dhe gjërat në mes.",
+        },
+        get_posts: {
+          en: "Get new posts in your inbox",
+          mk: "Добијте нови написи во вашето сандаче",
+          sq: "Merrni postimet e reja në kutinë tuaj",
+        },
+        ph_email: {
+          en: "your@email.com",
+          mk: "вашата@емаил.com",
+          sq: "juaji@email.com",
+        },
+        btn_subscribe_arrow: {
+          en: "Subscribe →",
+          mk: "Претплатете се →",
+          sq: "Abonohuni →",
+        },
+        btn_subscribe: {
+          en: "Subscribe",
+          mk: "Претплатете се",
+          sq: "Abonohuni",
+        },
+        no_spam: {
+          en: "No spam. One email when we publish something worth reading.",
+          mk: "Без спам. Еден имаил кога ќе објавиме нешто вредно за читање.",
+          sq: "Pa spam. Një email kur publikojmë diçka që ia vlen të lexohet.",
+        },
+        read_more: {
+          en: "Read more →",
+          mk: "Прочитајте повеќе →",
+          sq: "Lexo më shumë →",
+        },
+        min_read: { en: "min read", mk: "мин читање", sq: "min lexim" },
+        newsletter_t: {
+          en: "The thinking behind the work.",
+          mk: "Размислувањето зад работата.",
+          sq: "Mendimi pas punës.",
+        },
+        newsletter_d: {
+          en: "Strategy breakdowns, design teardowns, and the occasional hot take — straight to your inbox, once a month.",
+          mk: "Анализи на стратегии, разгледувања на дизајн — директно во вашето сандаче, еднаш месечно.",
+          sq: "Analiza strategjish dhe rishikime dizajni — direkt në kutinë tuaj, një herë në muaj.",
+        },
+        contact_tag: {
+          en: "Get in touch",
+          mk: "Контактирајте не",
+          sq: "Na kontaktoni",
+        },
+        contact_h1_1: {
+          en: "Let's build",
+          mk: "Да изградиме",
+          sq: "Le të ndërtojmë",
+        },
+        contact_h1_2: { en: "something", mk: "нешто", sq: "diçka" },
+        contact_h1_3: { en: "great.", mk: "одлично.", sq: "të shkëlqyer." },
+        contact_desc: {
+          en: "Tell us about your project and we'll get back to you within one business day. No hard sell — just an honest conversation about what you need and whether we're the right fit.",
+          mk: "Кажете ни за вашиот проект и ќе ви одговориме во рок од еден работен ден. Без тврда продажба — само искрен разговор.",
+          sq: "Na tregoni për projektin tuaj dhe do t'ju përgjigjemi brenda një dite pune. Pa shitje të ashpër — vetëm bisedë e ndershme.",
+        },
+        email_us: {
+          en: "Email us",
+          mk: "Пишете ни на емаил",
+          sq: "Na dërgoni email",
+        },
+        response_time: {
+          en: "Response time",
+          mk: "Време на одговор",
+          sq: "Koha e përgjigjes",
+        },
+        within_1_day: {
+          en: "Within 1 business day",
+          mk: "Во рок од 1 работен ден",
+          sq: "Brenda 1 dite pune",
+        },
+        tell_project: {
+          en: "Tell us about your project",
+          mk: "Кажете ни за вашиот проект",
+          sq: "Tregoni për projektin tuaj",
+        },
+        fill_what: {
+          en: "Fill in what you can — we'll figure out the rest on the call.",
+          mk: "Пополнете го она што можете — останатото ќе го разрешиме на повикот.",
+          sq: "Plotësoni çfarë mundeni — të tjerat do t'i zgjidhim gjatë thirrjes.",
+        },
+        f_name: { en: "Your name *", mk: "Вашето ime *", sq: "Emri juaj *" },
+        f_email: {
+          en: "Email address *",
+          mk: "Емаил адреса *",
+          sq: "Adresa email *",
+        },
+        f_company: { en: "Company", mk: "Компанија", sq: "Kompania" },
+        f_website: {
+          en: "Website (if any)",
+          mk: "Веб-сајт (ако имате)",
+          sq: "Faqja web (nëse ka)",
+        },
+        f_proj_type: {
+          en: "Project type *",
+          mk: "Вид на проект *",
+          sq: "Lloji i projektit *",
+        },
+        f_budget: {
+          en: "Budget range",
+          mk: "Распон на буџет",
+          sq: "Rangu i buxhetit",
+        },
+        f_new_web: {
+          en: "New website",
+          mk: "Нов веб-сајт",
+          sq: "Faqe e re interneti",
+        },
+        f_redesign: { en: "Redesign", mk: "Редизајн", sq: "Ridizajn" },
+        f_ecomm: { en: "E-Commerce", mk: "Е-Трговија", sq: "E-Commerce" },
+        f_branding: { en: "Branding", mk: "Бренд", sq: "Branding" },
+        f_seo: { en: "SEO / Growth", mk: "SEO / Раст", sq: "SEO / Rritje" },
+        f_webapp: { en: "Web App", mk: "Веб Апликација", sq: "Aplikacion Web" },
+        f_other: { en: "Other", mk: "Друго", sq: "Tjetër" },
+        f_under_500: { en: "Under €500", mk: "Под €500", sq: "Nën €500" },
+        f_500_2k: { en: "€500–€2k", mk: "€500–€2k", sq: "€500–€2k" },
+        f_2k_5k: { en: "€2k–€5k", mk: "€2k–€5k", sq: "€2k–€5k" },
+        f_5k_15k: { en: "€5k–€15k", mk: "€5k–€15k", sq: "€5k–€15k" },
+        f_15k_plus: { en: "€15k+", mk: "€15k+", sq: "€15k+" },
+        f_not_sure: {
+          en: "Not sure yet",
+          mk: "Сè уште не сум сигурен",
+          sq: "Ende nuk jam i sigurt",
+        },
+        ph_project: {
+          en: "Tell us about your project...",
+          mk: "Кажете ни за вашиот проект...",
+          sq: "Tregoni për projektin tuaj...",
+        },
+        btn_send: {
+          en: "Send message",
+          mk: "Испрати порака",
+          sq: "Dërgo mesazhin",
+        },
+        form_note: {
+          en: "We reply to every message personally. No automated responses.",
+          mk: "Одговараме на секоја порака лично. Без автоматизирани одговори.",
+          sq: "Përgjigjemi çdo mesazhi personalisht. Pa përgjigje të automatizuara.",
+        },
+        what_next: {
+          en: "What happens next",
+          mk: "Што се случува следно",
+          sq: "Çfarë ndodh më pas",
+        },
+        next_1_t: {
+          en: "We review your brief",
+          mk: "Ќе го прегледаме вашиот бриф",
+          sq: "Do të rishikojmë briefin tuaj",
+        },
+        next_1_d: {
+          en: "and reply within 24 hours.",
+          mk: "и ќе одговориме во рок од 24 часа.",
+          sq: "dhe do të përgjigjemi brenda 24 orëve.",
+        },
+        next_2_t: {
+          en: "Discovery call",
+          mk: "Откривачки повик",
+          sq: "Thirrja e zbulimit",
+        },
+        next_2_d: {
+          en: "— a 30-minute conversation to understand your project in detail.",
+          mk: "— 30-минутен разговор за да го разбереме вашиот проект.",
+          sq: "— bisedë 30-minutëshe për të kuptuar projektin tuaj.",
+        },
+        next_3_t: {
+          en: "We send a proposal",
+          mk: "Ќе испратиме предлог",
+          sq: "Dërgojmë propozimin",
+        },
+        next_3_d: {
+          en: "— scoped, transparent, and ready to sign.",
+          mk: "— дефиниран, транспарентен и готов за потпишување.",
+          sq: "— i përcaktuar, transparent dhe gati për nënshkrim.",
+        },
+        next_4_t: { en: "Kick-off", mk: "Почеток", sq: "Fillimi" },
+        next_4_d: {
+          en: "once you're happy, we get started. Usually within a week.",
+          mk: "кога ќе бидете задоволни, започнуваме. Обично во рок од една недела.",
+          sq: "kur të jeni të kënaqur, fillojmë. Zakonisht brenda një jave.",
+        },
+        book_call_btn: {
+          en: "Book a call",
+          mk: "Закажете повик",
+          sq: "Rezervoni thirrje",
+        },
+        sched_call: {
+          en: "Schedule a 30-min discovery call",
+          mk: "Закажете 30-мин откривачки повик",
+          sq: "Planifikoni thirrje zbulimi 30-min",
+        },
+        form_msg_sent: {
+          en: "Message sent!",
+          mk: "Пораката е испратена!",
+          sq: "Mesazhi u dërgua!",
+        },
+        form_err: {
+          en: "Please fill in your name, email, project type, and message.",
+          mk: "Ве молиме пополнете го вашето ime, емаил, вид на проект и порака.",
+          sq: "Ju lutemi plotësoni emrin, emailin, llojin e projektit dhe mesazhin.",
+        },
+      };
+
+      function getLang() {
+        return localStorage.getItem("nexora_lang") || "en";
+      }
+
+      function setLang(lang) {
+        localStorage.setItem("nexora_lang", lang);
+        _applyLang(lang);
+        _markActive(lang);
+        _updateFlag(lang);
+        // Close dropdown
+        var d = document.getElementById("langDrop");
+        if (d) d.classList.remove("open");
+      }
+
+      function _applyLang(lang) {
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          var key = el.getAttribute("data-i18n");
+          var row = _NX[key];
+          if (!row) return;
+          var txt = row[lang] || row["en"] || "";
+          if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+            el.placeholder = txt;
+          } else if (el.hasAttribute("data-i18n-html")) {
+            el.innerHTML = txt;
+          } else {
+            el.textContent = txt;
+          }
+        });
+        document.documentElement.lang = lang;
+      }
+
+      function _markActive(lang) {
+        document
+          .querySelectorAll(".lang-opt,.lang-opt-m")
+          .forEach(function (b) {
+            b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+          });
+      }
+
+      function _updateFlag(lang) {
+        var flags = {
+          en: "https://flagcdn.com/w40/gb.png",
+          mk: "https://flagcdn.com/w40/mk.png",
+          sq: "https://flagcdn.com/w40/al.png",
+        };
+        var img = document.getElementById("langFlagImg");
+        if (img) img.src = flags[lang] || flags["en"];
+      }
+
+      // Toggle dropdown
+      document.addEventListener("DOMContentLoaded", function () {
+        var btn = document.getElementById("langDropBtn");
+        var drop = document.getElementById("langDrop");
+        if (btn && drop) {
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            drop.classList.toggle("open");
+          });
+          document.addEventListener("click", function () {
+            drop.classList.remove("open");
+          });
+        }
+        var lang = getLang();
+        _applyLang(lang);
+        _markActive(lang);
+        _updateFlag(lang);
+      });
+    </script>
+
+    <script>
+      const cursor = document.getElementById("cursor"),
+        ring = document.getElementById("cursorRing");
+      let mx = 0,
+        my = 0,
+        rx = 0,
+        ry = 0;
+      document.addEventListener("mousemove", (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+        cursor.style.left = mx + "px";
+        cursor.style.top = my + "px";
+      });
+      function animRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + "px";
+        ring.style.top = ry + "px";
+        requestAnimationFrame(animRing);
+      }
+      animRing();
+      const nav = document.getElementById("nav");
+      window.addEventListener("scroll", () =>
+        nav.classList.toggle("scrolled", window.scrollY > 60),
+      );
+      const reveals = document.querySelectorAll(".reveal");
+      const obs = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          }),
+        { threshold: 0.08 },
+      );
+      reveals.forEach((el) => obs.observe(el));
+      // Filter
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const f = btn.dataset.filter;
+          document.querySelectorAll(".project-card").forEach((card) => {
+            const tags = card.dataset.tags || "";
+            card.classList.toggle("show", f === "all" || tags.includes(f));
+          });
+        });
+      });
+
+      // ── Mobile menu ──
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const menuClose = document.getElementById("menuClose");
+      function closeMenu() {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("open");
+        mobileMenu.classList.toggle("open");
+        document.body.style.overflow = mobileMenu.classList.contains("open")
+          ? "hidden"
+          : "";
+      });
+      menuClose.addEventListener("click", closeMenu);
+      mobileMenu
+        .querySelectorAll("a:not(.mobile-menu-cta)")
+        .forEach((a) => a.addEventListener("click", closeMenu));
+    </script>
+  </body>
+</html>

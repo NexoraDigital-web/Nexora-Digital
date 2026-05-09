@@ -3078,20 +3078,46 @@
             Accept: "application/json",
           },
           body: json,
-        })
-          .then(async (response) => {
-            if (response.status == 200) {
-              // Hide form and show your existing success overlay
-              document.getElementById("contactForm").style.display = "none";
-              document.getElementById("successOverlay").style.display = "block";
-            } else {
-              document.getElementById("formError").style.display = "block";
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            document.getElementById("formError").style.display = "block";
-          });
+        }).then(async (response) => {
+          if (response.status == 200) {
+            // 1. Get the name from your form (ID cName)
+            const name = document.getElementById("cName").value;
+            const email = document.getElementById("cEmail").value;
+
+            // 2. Get the other agency details
+            const company = document.getElementById("cCompany").value || "N/A";
+            const website = document.getElementById("cWebsite").value || "N/A";
+            const type =
+              document.getElementById("projectTypeInput").value ||
+              "Not specified";
+            const budget =
+              document.getElementById("budgetInput").value || "Not specified";
+            const message = document.querySelector(
+              'textarea[name="message"]',
+            ).value;
+
+            // 3. Create the "Brief" for the custom question box (a1)
+            // We leave the Name OUT of this part because it goes in its own box
+            const fullBrief = `Agency Lead Details:
+- Company: ${company}
+- Website: ${website}
+- Project: ${type}
+- Budget: ${budget}
+- Message: ${message}`;
+
+            // 4. Build the Link
+            // 'name=' fills the main Name box in Calendly
+            // 'a1=' fills the custom "Brief" box you made
+            const calendlyUrl =
+              `https://calendly.com/Nexora-Digital/30min` +
+              `?name=${encodeURIComponent(name)}` +
+              `&email=${encodeURIComponent(email)}` +
+              `&a1=${encodeURIComponent(fullBrief)}`;
+
+            // 5. Go!
+            window.location.href = calendlyUrl;
+          }
+        });
       });
 
       // Logic for Budget Range selection
